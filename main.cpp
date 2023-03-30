@@ -5,18 +5,22 @@
 
 #include "mbed.h"
 
+int nth_term=14;
+int term_1, term_2;
+int next_term=0;
 
-// Blinking rate in milliseconds
-#define BLINKING_RATE     1000ms
+int main () {
+term_1=0;
+term_2=1;
 
+printf("nth_term is %d \r\n", nth_term);
+printf("0, 1, ");
 
-int main()
-{
-    // Initialise the digital pin LED1 as an output
-    DigitalOut led(LED1);
-
-    while (true) {
-        led = !led;
-        ThisThread::sleep_for(BLINKING_RATE);
+for(int i=2; i<nth_term; i++) {
+next_term=term_1+term_2;
+printf("%d, ", next_term);
+term_1=term_2;
+term_2=next_term;
     }
+printf("...!\r\n");
 }
